@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Carnet d'hiver 2026-27</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="eyebrow">Départ 9 nov. 2026 · retour fin déc. ou fin fév./début mars 2027 · depuis Paris</div>
+  <h1>Carnet d'hiver 2026-27</h1>
+<details class="srcbox info">
+  <summary><h2>À lire avant de partir</h2></summary>
+  <p class="lede">Les pays où il fait chaud (ou au moins pas l'hiver) entre novembre et mars. J'ai retiré les pays que tu as déjà faits, l'Europe, les États-Unis, le Canada, la Thaïlande, ainsi que les pays en guerre ou exposés à un conflit. Les budgets sont des fourchettes par jour pour un voyage en sac à dos (dortoir en auberge, cuisine de rue, transports locaux), hors vol aller-retour et hors grosses activités.</p>
+  <div class="alert"><strong>Point sécurité au 29 octobre 2026.</strong> Selon la presse (WSJ, repris le 28/10), les États-Unis ont prévenu les monarchies du Golfe d'une campagne militaire « courte et intense » contre l'Iran après les élections du 3 novembre, et l'Iran menace de riposter dans toute la région. J'ai donc exclu tout le Moyen-Orient et le Golfe. <strong>Pour tes vols vers l'Asie ou l'Afrique, évite les escales à Dubaï, Doha, Abou Dhabi ou Mascate</strong> : privilégie un vol direct ou une escale à Istanbul, Addis-Abeba, Nairobi, Singapour, Bangkok ou Hong Kong. Avant de réserver, vérifie la fiche France Diplomatie du pays et inscris-toi sur Ariane.</div>
+  <p class="lede">Pour les visas, j'ai vérifié en ligne les changements récents (Vietnam, Sri Lanka, Namibie, Kenya). Partout, il faut un passeport valide au moins 6 mois après le retour. Les règles bougent : vérifie la fiche « Entrée / Séjour » de France Diplomatie avant d'acheter le billet. Pour la course, en zone tropicale, il faut presque toujours sortir avant 7 h à cause de la chaleur.</p>
+</details>
+  <div class="legend">
+    <span><span class="chip g">Top</span> / <span class="chip w">Correct</span> / <span class="chip b">Bof</span> : météo selon la période</span>
+    <span>Seule : <span class="chip g">Facile</span> <span class="chip w">Vigilance</span> <span class="chip b">Exigeant</span></span>
+    <span>Course : <span class="chip g">Facile</span> <span class="chip w">Avec contraintes</span> <span class="chip b">Compliqué</span></span>
+    <span>Visa (passeport français) : <span class="chip g">Sans visa</span> <span class="chip w">Formalité en ligne</span> <span class="chip b">Visa payant</span></span>
+  </div>
+
+</header>
+
+<div class="filters" role="search">
+  <nav class="tabs" aria-label="Vues du carnet"><a href="#liste">Liste des pays</a><a href="#carte">Carte</a><a href="#selection">Ma sélection <span id="nsel" class="num">0</span></a></nav>
+  <div class="f"><label for="fr">Région</label>
+    <select id="fr"><option value="">Toutes</option><option>Asie</option><option>Océanie</option><option>Afrique</option><option>Amérique du Sud</option><option>Amérique centrale & Caraïbes</option></select></div>
+  <div class="f"><label for="fp">Bonne météo en</label>
+    <select id="fp"><option value="">Peu importe</option><option value="nd">Nov–déc (top ou correct)</option><option value="ndtop">Nov–déc (top seulement)</option><option value="jm">Janv–mars (top ou correct)</option><option value="jmtop">Janv–mars (top seulement)</option><option value="both">Les deux périodes</option></select></div>
+  <div class="f"><label for="fs">Voyager seule</label>
+    <select id="fs"><option value="3">Tout</option><option value="2">Facile + vigilance</option><option value="1">Facile seulement</option></select></div>
+  <div class="f"><label for="fc">Courir</label>
+    <select id="fc"><option value="123">Tout</option><option value="1">Facile seulement</option><option value="12">Facile + avec contraintes</option><option value="2">Avec contraintes seulement</option><option value="3">Compliqué seulement</option></select></div>
+  <div class="f"><label for="fv">Visa</label>
+    <select id="fv"><option value="012">Tout</option><option value="0">Sans visa seulement</option><option value="01">Sans visa + formalité en ligne</option><option value="1">Formalité en ligne seulement</option><option value="2">Avec visa (payant)</option></select></div>
+  <div class="f"><label for="fb">Budget max/jour : <span id="fbv" class="num">120 €</span></label>
+    <input type="range" id="fb" min="30" max="120" step="5" value="120"></div>
+  <div class="f"><label for="fo">Trier par</label>
+    <select id="fo"><option value="r">Région</option><option value="c">Budget croissant</option><option value="s">Facilité en solo</option><option value="v">Durée de vol</option><option value="k">Facilité pour courir</option></select></div>
+  <div class="f"><label for="fq">Chercher</label><input type="search" id="fq" placeholder="ex. plage, trek, mes notes…"></div>
+  <label class="chk" for="fw"><input type="checkbox" id="fw"> Ma liste seulement</label>
+  <div class="count" id="count"></div>
+</div>
+<p class="store"><span id="store"></span> <button type="button" class="x" id="exp">Exporter mes notes</button> <label class="x" for="imp">Importer</label><input type="file" id="imp" accept="application/json" hidden></p>
+<div class="auth" id="auth" hidden></div>
+
+<div id="v-liste">
+  <div class="grid" id="grid"></div>
+</div>
+
+<div id="v-carte" hidden>
+  <div class="maphead">
+    <div class="f"><label for="lens">Colorer selon</label>
+      <select id="lens"><option value="nd">Météo nov–déc</option><option value="jm">Météo janv–mars</option><option value="solo">Voyager seule</option><option value="run">Course</option><option value="visa">Visa</option><option value="cost">Budget</option></select></div>
+    <div class="mlegend" id="mlegend"></div>
+    <div class="count" id="mcount"></div>
+  </div>
+  <div class="mapbox" id="map"><div class="empty">Chargement de la carte…</div></div>
+  <div class="tip" id="tip" hidden></div>
+  <p class="hint">Les filtres du haut s'appliquent à la carte : un pays qui ne passe pas les filtres reste gris. Les petites îles (Singapour, Maldives, Cap-Vert, Maurice, Fidji) sont représentées par un point. Clique sur un pays pour ouvrir sa fiche.</p>
+  <div id="pick" class="pick"></div>
+</div>
+
+<div id="v-selection" hidden>
+  <div class="selhead"><h2>Ma sélection</h2><p class="selsum" id="selsum"></p></div>
+  <div class="grid" id="selgrid"></div>
+</div>
+
+<section>
+  <h2>Idées d'enchaînement</h2>
+  <p class="lede">Ton retour n'est pas fixé, alors voici des combinaisons qui suivent la météo, pour un retour fin décembre ou un retour fin février / début mars.</p>
+  <div class="combos">
+    <div class="combo"><h3>Asie du Sud, 6 à 10 sem.</h3><p>Népal en novembre (ciel dégagé, trek en groupe), puis le Sri Lanka de décembre à février. Pour un retour en mars, termine par les Maldives (îles locales).</p></div>
+    <div class="combo"><h3>Asie du Sud-Est, jusqu'à mars</h3><p>Nord du Vietnam en novembre, puis le Sud en décembre, et la côte ouest de la Malaisie avec Singapour en janvier. Ensuite le Sri Lanka ou les Maldives (îles locales) en février.</p></div>
+    <div class="combo"><h3>Les Andes, puis la Patagonie</h3><p>Pérou et Bolivie en novembre, avant la saison des pluies. Puis le nord du Chili (Atacama) et la Patagonie chilienne et argentine de décembre à février, avec Buenos Aires ou l'Uruguay pour finir.</p></div>
+    <div class="combo"><h3>L'Amérique centrale par la route</h3><p>Guatemala → El Salvador → Nicaragua → Costa Rica → Panama, puis vol (ou voilier par les San Blas) vers la Colombie. Compte 10 à 14 semaines, saison sèche de décembre à avril.</p></div>
+    <div class="combo"><h3>L'Afrique australe, 6 à 8 sem.</h3><p>Le Cap et la Garden Route, puis la Namibie en tour de groupe. Option Tanzanie (Zanzibar, safari) en janvier-février, la saison sèche.</p></div>
+    <div class="combo"><h3>Courte, francophone, 4 à 6 sem.</h3><p>Sénégal (Dakar, Sine-Saloum, Casamance) puis le Cap-Vert, à 5-6 h de Paris. Idéal si tu rentres fin décembre.</p></div>
+  </div>
+</section>
+
+<details class="srcbox">
+  <summary><h2>Pays retirés et pourquoi</h2></summary>
+  <div class="excl">
+    <div><h4>En guerre ou exposés au conflit</h4><p>Russie, Ukraine, Israël et Palestine, Liban, Syrie, Irak, Iran, Yémen, Soudan, Soudan du Sud, Somalie, Libye, Mali, Burkina Faso, Niger, est de la RDC, Haïti, Myanmar, Afghanistan, Pakistan, Venezuela (Royaume-Uni : déconseillé sauf raison impérative).</p></div>
+    <div><h4>Golfe et Proche-Orient, par précaution</h4><p>Émirats, Qatar, Oman (déjà frappé par l'Iran en 2026), Arabie saoudite (missiles houthis fin octobre), Koweït, Bahreïn, Jordanie (survolée et ciblée par des drones iraniens depuis juillet).</p></div>
+    <div><h4>Zone grise, je ne les recommande pas en ce moment</h4><p><b>Égypte</b> : stable sur place, mais les Houthis menacent le canal de Suez et la région peut s'embraser après le 3 novembre. <b>Cuba</b> : sûre pour une femme seule, mais crise énergétique sévère, avec coupures générales répétées, pénurie de carburant et hôtels fermés en 2026.</p></div>
+    <div><h4>Trop froid de novembre à mars</h4><p>Japon, Corée du Sud, Chine, Mongolie, Asie centrale, Géorgie, Arménie, Turquie. Le Maroc et le Népal restent dans la liste, mais il y fait doux à frais.</p></div>
+    <div><h4>Tes exclusions</h4><p>Déjà faits : Mexique, Nouvelle-Zélande, Taïwan, Philippines, Laos, Cambodge, Açores. Écartés : Europe, États-Unis, Canada, Thaïlande, Inde. Réunion, Antilles et Guyane sont aussi retirées, car ce sont des territoires français.</p></div>
+  </div>
+</details>
+
+<details class="srcbox">
+  <summary><h2>Sources et limites</h2></summary>
+  <p class="lede">La situation sécuritaire a été vérifiée le 29/10/2026. Météo, budgets, durées et transports viennent de mes connaissances générales : ce sont des ordres de grandeur, à recouper. Les temps de vol sont des estimations, et les lignes directes changent selon la saison.</p>
+  
+  <div class="conf">
+    <p><b class="cg">Confiance élevée</b> : France Diplomatie (source officielle), Routard, L'Écho touristique et TourMaG (presse voyage professionnelle), Visas News (spécialisé visas, recoupé pour le Sri Lanka).</p>
+    <p><b class="cw">Confiance moyenne</b> : Atalayar (synthèse d'opinion qui reprend le WSJ : l'escalade au Moyen-Orient est une prévision, pas un fait acquis), buch-dein-visum.de (agence de visas, résumés d'avis officiels mais source secondaire), Ulysse (site commercial), Fragomen (cabinet d'immigration fiable, mais l'article peut dater).</p>
+    <p><b class="cb">Confiance faible</b> : la page sur le Venezuela (site inconnu, avec des incohérences internes). Elle confirme seulement une tendance que d'autres avis donnent aussi.</p>
+    <p><b>Sans source vérifiée</b> : météo, budgets, mood, transports et course viennent de mes connaissances générales. La météo et les transports sont fiables dans les grandes lignes. Les budgets sont plus fragiles, à cause de l'inflation et des taux de change de 2026.</p>
+  </div>
+  <div class="src">
+    <p><a href="https://atalayar.com/fr/articulo/gustavo-aristegui/gustavo-aristegui-analyse-geopolitique-du-28-octobre/20261028123724230125.html">Atalayar, analyse géopolitique du 28/10/2026</a></p>
+    <p><a href="https://www.tourmag.com/Oman-Qatar-Emirats-arabes-unis-quelles-consignes-pour-les-voyageurs-francais_a132740.html">TourMaG, consignes du Quai d'Orsay pour le Golfe (juillet 2026)</a></p>
+    <p><a href="https://www.diplomatie.gouv.fr/fr/information-par-pays/egypte/conseils-aux-voyageurs-securite">France Diplomatie, Égypte</a></p>
+    <p><a href="https://www.buch-dein-visum.de/en/news/ecuador/ecuador-aktuelle-reise-und-sicherheitshinweise-stand-24-08-2026-c8f242">Équateur, état d'urgence (août 2026)</a></p>
+    <p><a href="https://www.buch-dein-visum.de/fr/news/peru/peru-reise-und-sicherheitshinweise-nach-den-praesidentschaftswahlen-2026-2db3f0">Pérou après les élections de 2026</a></p>
+    <p><a href="https://www.buch-dein-visum.de/en/news/kolumbien/kolumbien-reise-und-sicherheitshinweise-nach-den-praesidentschaftswahlen-2026-235776">Colombie après les élections de 2026</a></p>
+    <p><a href="https://www.buch-dein-visum.de/en/news/allgemein/nepal-aktuelle-reise-und-sicherheitshinweise-fuer-touristen-stand-juli-2026-a7db06">Népal (juillet 2026)</a></p>
+    <p><a href="https://venezuela-investment-journal.onrender.com/is-venezuela-safe">Venezuela, avis aux voyageurs (2026)</a></p>
+    <p><a href="https://www.travelmole.com/news/madagascar-normalcy-air-france-return">Madagascar, reprise d'Air France</a></p>
+    <p><a href="https://www.lechotouristique.com/article/tanzanie-nouvel-appel-a-la-prudence-pour-les-voyageurs">L'Écho touristique, prudence en Tanzanie</a></p>
+    <p><a href="https://www.lalibre.be/international/amerique/2026/08/03/a-cuba-le-courant-peu-a-peu-retabli-apres-une-nouvelle-panne-totale-une-situation-insoutenable-PP3WWX46VRDTFKPMLW4UY6MQPM/">La Libre, panne générale à Cuba (août 2026)</a></p>
+    <p><a href="https://www.diplomatie.gouv.fr/fr/information-par-pays/liban/conseils-aux-voyageurs-securite">France Diplomatie, Liban</a></p>
+    <p><a href="https://visasnews.com/en/sri-lanka-makes-tourist-eta-free-for-40-nationalities-from-may-25/">Sri Lanka, ETA gratuite depuis mai 2026</a></p>
+    <p><a href="https://www.routard.com/actualite-du-voyage/cid141475-vietnam-exemption-de-visa-prolongee-jusquen-2028.html">Vietnam, exemption de visa prolongée jusqu'en 2028</a></p>
+    <p><a href="https://ulysse.com/news/namibie-visa-francais-2026-evisa-safari-alternatives">Namibie, visa obligatoire (~82 €)</a></p>
+    <p><a href="https://www.fragomen.com/insights/kenya-new-visa-waiver-for-all-nationals-electronic-travel-authorization-required-for-some.html">Kenya, eTA</a></p>
+  </div>
+</details>
+</div>
+
+<script>window.echarts={registerMap:function(n,g){window.__worldGeo=g}};</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@4.9.0/map/js/world.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
