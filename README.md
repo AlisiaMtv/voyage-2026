@@ -39,4 +39,4 @@ Le site est hébergé sur **GitHub Pages**, les notes sont gardées dans **Supab
 2. *Settings > Pages* : source « Deploy from a branch », branche `main`, dossier `/ (root)`.
 3. Le site est disponible à `https://<ton-pseudo>.github.io/voyage-2026/`. Ouvre-le sur ton téléphone et ajoute-le à l'écran d'accueil.
 
-Sur chaque appareil, saisis ton e-mail dans « Synchroniser mes notes », puis tape le code reçu par e-mail (ça marche aussi depuis l’icône de l’écran d’accueil). Le modèle d’e-mail *Magic Link* de Supabase doit contenir `{{ .Token }}`.
+Sur chaque appareil, saisis ton e-mail dans « Synchroniser mes notes », puis ouvre le lien reçu **sur ce même appareil**.

@@ -314,27 +314,11 @@ $("#imp").addEventListener("change",async e=>{
       sb=null;uid=null;store="local";first=true;status();
       try{NOTES=JSON.parse(localStorage.getItem("carnet-notes")||"{}")||{}}catch(e){NOTES={}}
       refreshMine();updateCount();
-      let mail="";try{mail=localStorage.getItem("carnet-email")||""}catch(e){}
-      box.innerHTML=`<form id="login" style="display:contents"><span>Synchroniser mes notes :</span><input type="email" name="email" value="${esc(mail)}" placeholder="ton e-mail" required aria-label="E-mail" autocomplete="email"><button type="submit">Recevoir un code</button><button type="button" class="x" id="hascode">J'ai déjà un code</button></form>`;
-      // le code se tape sur cette page : marche aussi depuis l'icône de l'écran d'accueil (le lien de l'e-mail, lui, s'ouvre dans Safari)
-      const askCode=(email,msg)=>{
-        box.innerHTML=`<form id="otp" style="display:contents"><span>${esc(msg)}</span><input name="code" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6,10}" placeholder="code reçu" required aria-label="Code reçu par e-mail"><button type="submit">Valider</button><button type="button" class="x" id="back">Changer d'e-mail</button></form>`;
-        $("#back").onclick=()=>show(null);
-        $("#otp").onsubmit=async e=>{
-          e.preventDefault();
-          const {error}=await client.auth.verifyOtp({email,token:e.target.code.value.trim(),type:"email"});
-          if(error)askCode(email,"Code refusé ("+error.message+"). Réessaie :");
-        };
-        $("#otp").code.focus();
-      };
-      const emailOf=()=>{const v=$("#login").email.value.trim();try{localStorage.setItem("carnet-email",v)}catch(e){}return v};
-      $("#hascode").onclick=()=>{if($("#login").reportValidity())askCode(emailOf(),"Code reçu par e-mail :")};
+      box.innerHTML=`<form id="login" style="display:contents"><span>Synchroniser mes notes :</span><input type="email" name="email" placeholder="ton e-mail" required aria-label="E-mail"><button type="submit">Recevoir le lien de connexion</button></form>`;
       $("#login").onsubmit=async e=>{
         e.preventDefault();
-        const email=emailOf();
-        const {error}=await client.auth.signInWithOtp({email,options:{shouldCreateUser:false,emailRedirectTo:location.origin+location.pathname}});
-        if(error){box.innerHTML=`<span>Envoi impossible : ${esc(error.message)}</span><button type="button" class="x" id="back">Réessayer</button>`;$("#back").onclick=()=>show(null);}
-        else askCode(email,"Code envoyé à "+email+" :");
+        const {error}=await client.auth.signInWithOtp({email:e.target.email.value.trim(),options:{emailRedirectTo:location.origin+location.pathname}});
+        box.textContent=error?"Envoi impossible : "+error.message:"Lien envoyé : ouvre l'e-mail sur cet appareil pour te connecter.";
       };
     }
   }
