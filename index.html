@@ -28,8 +28,9 @@
 
 </header>
 
-<div class="filters" role="search">
+<div class="filters" id="filters" role="search">
   <nav class="tabs" aria-label="Vues du carnet"><a href="#liste">Liste des pays</a><a href="#carte">Carte</a><a href="#selection">Ma sélection <span id="nsel" class="num">0</span></a></nav>
+  <button type="button" class="ftog" id="ftog" aria-expanded="false" aria-controls="filters">Filtres <span id="fnb" class="num" hidden></span></button>
   <div class="f"><label for="fr">Région</label>
     <select id="fr"><option value="">Toutes</option><option>Asie</option><option>Océanie</option><option>Afrique</option><option>Amérique du Sud</option><option>Amérique centrale & Caraïbes</option></select></div>
   <div class="f"><label for="fp">Bonne météo en</label>

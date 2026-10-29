@@ -139,6 +139,8 @@ function render(){
   const L=filtered();
   $("#grid").innerHTML=L.length?L.map(card).join(""):`<div class="empty">Aucun pays ne correspond. Élargis le budget ou la période.</div>`;
   $("#count").textContent=L.length+" / "+D.length+" pays";
+  const nf=[f.r,f.p,f.s<3,f.ru!=="123",f.vi!=="012",f.b<120,f.q,f.w].filter(Boolean).length;
+  $("#fnb").textContent=nf;$("#fnb").hidden=!nf;
   if(f.p==="nd"||f.p==="ndtop")$("#lens").value="nd";
   if(f.p==="jm"||f.p==="jmtop")$("#lens").value="jm";
   if(view==="carte")paintMap();
@@ -325,3 +327,9 @@ $("#imp").addEventListener("change",async e=>{
   // recharge les notes prises sur un autre appareil quand on revient sur la page
   document.addEventListener("visibilitychange",()=>{if(!document.hidden&&sb)load()});
 })();
+
+/* ---------- Filtres repliables sur mobile ---------- */
+$("#ftog").addEventListener("click",()=>{
+  const open=$("#filters").classList.toggle("open");
+  $("#ftog").setAttribute("aria-expanded",open);
+});

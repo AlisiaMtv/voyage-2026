@@ -128,3 +128,16 @@ section{margin-top:44px;display:grid;gap:14px}
 .auth{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px;color:var(--muted);margin-top:6px}
 .auth input{font:inherit;font-size:13px;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 9px;flex:0 1 240px;min-width:0}
 .auth button{font:inherit;font-size:13px;font-weight:600;color:var(--accent);background:transparent;border:1px solid var(--accent);border-radius:999px;padding:5px 12px;cursor:pointer}
+.ftog{display:none;font:inherit;font-weight:600;font-size:14px;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 14px;cursor:pointer}
+.ftog .num{font-size:12px;background:var(--accent);color:var(--surface);border-radius:999px;padding:1px 7px;margin-left:4px}
+/* Mobile : seuls les onglets, le bouton Filtres et le compteur restent visibles ; les filtres s'ouvrent à la demande */
+@media (max-width:700px){
+  .filters{gap:8px;align-items:center}
+  .tabs{margin-bottom:0}
+  .ftog{display:inline-block}
+  .filters:not(.open)>.f,.filters:not(.open)>.chk{display:none}
+  .filters.open{max-height:75vh;overflow-y:auto}
+  .filters.open>.f{flex:1 1 calc(50% - 10px)}
+  .filters.open>.f select,.filters.open>.f input[type=search]{width:100%}
+  .count{margin-left:auto}
+}
